@@ -40,7 +40,6 @@
 
 namespace loc_core {
 
-#define SLL_LOC_API_LIB_NAME "libsynergy_loc_api.so"
 #define LOC_APIV2_0_LIB_NAME "libloc_api_v02.so"
 #define IS_SS5_HW_ENABLED  1
 
@@ -266,9 +265,6 @@ LocApiBase* ContextBase::createLocApi(LOC_API_ADAPTER_EVENT_MASK_T exMask)
         if (NULL == (locApi = mLBSProxy->getLocApi(exMask, this))) {
             void *handle = NULL;
 
-            if (IS_SS5_HW_ENABLED == mGps_conf.GNSS_DEPLOYMENT) {
-                libname = SLL_LOC_API_LIB_NAME;
-            }
 
             if ((handle = dlopen(libname, RTLD_NOW)) != NULL) {
                 LOC_LOGD("%s:%d]: %s is present", __func__, __LINE__, libname);
